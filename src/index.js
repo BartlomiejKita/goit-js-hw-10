@@ -4,6 +4,27 @@ import Notiflix from 'notiflix';
 const debounce = require('lodash.debounce');
 
 const DEBOUNCE_DELAY = 300;
+const fetchCountriesInput = document.querySelector('#search-box');
+const countryList = document.querySelector('.country-list');
+const countryInfo = document.querySelector('.country-info');
+
+fetchCountriesInput.addEventListener(
+  'input',
+  debounce(searchCountry, DEBOUNCE_DELAY)
+);
+
+function searchCountry() {
+  let name = fetchCountriesInput.value;
+  if (name === '') {
+    Notiflix.Notify.info('Please type a country name');
+    resetList();
+  } else {
+    fetchCountries(name.trim())
+      .then(countries => renderCountriesList(countries))
+      .catch(() => {
+        Notiflix.Notify.failure('Oops, there is no country with that name');
+        resetList();
+      });
   }
 }
 
