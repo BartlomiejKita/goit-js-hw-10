@@ -38,27 +38,29 @@ function renderCountriesList(countries) {
     resetList();
     const markup = countries
       .map(({ name, flags }) => {
-        return `<h2><img width="100" src="${flags.svg}"> ${name}</h2>`;
+        return `<li class="list-countries"><img class="list-flag" src="${flags.svg}"><h2> ${name}</h2></li>`;
       })
       .join('');
-    countryInfo.innerHTML = markup;
+    countryList.innerHTML = markup;
   } else if (countries.length === 1) {
     resetList();
     const markup = countries
       .map(({ name, flags, capital, population, languages }) => {
-        return `<h1><img width="100" src="${flags.svg}"> ${name}</h1>
-              <p><b>Capital</b>: ${capital}</p>
-              <p><b>Population</b>: ${population}</p>
-              <p><b>Languages</b>: ${languages.map(
-                ({ name }) => ' ' + name
-              )}</p>`;
+        return `<div class="header"><img class="div-flag" src="${
+          flags.svg
+        }"><h1> ${name}</h1></div>
+            <li class="list-countries">  <p><b>Capital</b>: ${capital}</p></li>
+            <li class="list-countries"> <p><b>Population</b>: ${population}</p></li>
+            <li class="list-countries">  <p><b>Languages</b>: ${languages.map(
+              ({ name }) => ' ' + name
+            )}</p></li>`;
       })
       .join('');
-    countryList.innerHTML = markup;
+    countryInfo.innerHTML = markup;
   }
 }
 
 const resetList = () => {
-  countryInfo.innerHTML = ' ';
-  countryList.innerHTML = ' ';
+  countryInfo.innerHTML = '';
+  countryList.innerHTML = '';
 };

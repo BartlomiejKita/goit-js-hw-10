@@ -17,4 +17,43 @@ body {
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+  margin-left: 35px;
+}
+
+li {
+  list-style: none;
+}
+
+.list-flag {
+  object-fit: fill;
+  margin-right: 20px;
+  width: 55px;
+  box-shadow: 2px 2px 5px black;
+}
+
+.list-countries {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.country-info {
+  margin-left: 35px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.div-flag {
+  object-fit: fill;
+  margin-right: 20px;
+  width: 110px;
+  box-shadow: 2px 2px 5px black;
+}
+
+p {
+  font-size: 18px;
 }
