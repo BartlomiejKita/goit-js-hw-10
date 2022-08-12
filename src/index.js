@@ -1,3 +1,4 @@
+'use strict';
 import './css/styles.css';
 import { fetchCountries } from './fetchCountries';
 import Notiflix from 'notiflix';
@@ -8,12 +9,7 @@ const fetchCountriesInput = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-fetchCountriesInput.addEventListener(
-  'input',
-  debounce(searchCountry, DEBOUNCE_DELAY)
-);
-
-function searchCountry() {
+const searchCountry = () => {
   let name = fetchCountriesInput.value;
   if (name === '') {
     Notiflix.Notify.info('Please type a country name');
@@ -26,9 +22,9 @@ function searchCountry() {
         resetList();
       });
   }
-}
+};
 
-function renderCountriesList(countries) {
+const renderCountriesList = countries => {
   if (countries.length > 10) {
     Notiflix.Notify.info(
       'Too many matches found. Please enter a more specific name.'
@@ -58,7 +54,12 @@ function renderCountriesList(countries) {
       .join('');
     countryInfo.innerHTML = markup;
   }
-}
+};
+
+fetchCountriesInput.addEventListener(
+  'input',
+  debounce(searchCountry, DEBOUNCE_DELAY)
+);
 
 const resetList = () => {
   countryInfo.innerHTML = '';
